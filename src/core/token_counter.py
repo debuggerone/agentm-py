@@ -17,7 +17,8 @@ class TokenCounter:
 
         Args:
             model (str): The model name to use for token encoding.
-                        Note: tiktoken does not directly support "gpt-4o-mini" at the moment.
+                        Note: tiktoken does not directly support "gpt-4o-mini" at the moment,
+                        so "cl100k_base" is used as a workaround.
         """
         self.encoder = tiktoken.get_encoding("cl100k_base")
 
@@ -35,3 +36,4 @@ class TokenCounter:
         for message in messages:
             total_tokens += len(self.encoder.encode(message["content"]))
         return total_tokens
+
